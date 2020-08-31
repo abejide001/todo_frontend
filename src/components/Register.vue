@@ -1,25 +1,63 @@
 <!-- eslint disable -->
- <template>
-  <div>
-    <h1>Register</h1>
-    <input type="email" name="email" v-model="email" placeholder="email" />
-    <br />
-    <input type="name" name="name" v-model="name" placeholder="name" />
-    <br />
-    <input type="password" name="password" v-model="password" placeholder="password" />
-    <input
-      type="password"
-      name="passwordConfirm"
-      v-model="passwordConfirm"
-      placeholder="passwordConfirm"
-    />
-    <br />
-    <button @click="register">Register</button>
-  </div>
-</template>
+<template>
+  <v-app>
+    <v-layout>
+      <v-flex xs6 offset-xs3>
+        <div class="white elevation-1">
+          <v-toolbar flat dense class="cyan" dark>
+            <v-toolbar-title>
+              Register
+            </v-toolbar-title>
+          </v-toolbar>
+          <div class="pl-4 pr-4 pt-4 pb-2">
+            <v-form>
+              <v-container>
+                <v-col>
+                <v-col cols="12" sm="6" md="3">
+                    <v-text-field
+                      label="Email"
+                      outlined
+                      class="email"
+                      v-model="email"
+                      v-on:keyup.enter="register"
+                    ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="3">
+                    <v-text-field
+                      label="Name"
+                      outlined
+                      class="name"
+                      v-model="name"
+                      v-on:keyup.enter="register"
+                    ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="4" md="3">
+                    <v-text-field
+                      label="Password"
+                      outlined
+                      type="password"
+                      v-model="password"
+                      v-on:keyup.enter="register"
+                    ></v-text-field>
+                    </v-col>
+                    </v-col>
+                    <v-row>
+                      <div class="red--text">{{error}} </div>
+                    </v-row>
+                    <v-row>
+                      <v-btn  @click="register">Register </v-btn>
+                    </v-row>
+                  </v-container>
+              </v-form>
+        </div>
+        </div>
+      </v-flex>
+    </v-layout>
+  </v-app>
+  </template>
 
 <script>
-import AuthenticationService from "../services/AuthenticationService"
+import AuthenticationService from "../services/AuthenticationService";
 
 export default {
   data() {
@@ -27,22 +65,31 @@ export default {
       email: "",
       name: "",
       password: "",
-      passwordConfirm: ""
+      passwordConfirm: "",
+      error: null,
     };
   },
   methods: {
-      async register () {
-          const response = await AuthenticationService.register({
-              email: this.email,
-              name: this.name,
-              password: this.password,
-              passwordConfirm: this.passwordConfirm
-          })
+    async register() {
+      try {
+        const response = await AuthenticationService.register({
+          email: this.email,
+          name: this.name,
+          password: this.password,
+          passwordConfirm: this.passwordConfirm,
+        })
+        console.log(response);
+      } catch (error) {
+        this.error = error.response.data.error;
       }
+    }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.error {
+  color: red;
+}
 </style>
