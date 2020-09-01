@@ -48,26 +48,27 @@
   </template>
 
 <script>
-import AuthenticationService from "../services/AuthenticationService";
+import AuthenticationService from '../services/AuthenticationService'
 
 export default {
-  data() {
+  data () {
     return {
-      email: "",
-      password: "",
-      error: null,
-    };
+      email: '',
+      password: '',
+      error: null
+    }
   },
   methods: {
-    async login() {
+    async login () {
       try {
         const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
-        console.log(response);
+        this.$store.dispatch('setToken', response.data.data.token)
+        this.$store.dispatch('setUser', response.data.data.user)
       } catch (error) {
-        this.error = error.response.data.error;
+        this.error = error.response.data.error
       }
     }
   }

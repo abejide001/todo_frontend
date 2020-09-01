@@ -66,30 +66,31 @@
   </template>
 
 <script>
-import AuthenticationService from "../services/AuthenticationService";
+import AuthenticationService from '../services/AuthenticationService'
 
 export default {
-  data() {
+  data () {
     return {
-      email: "",
-      name: "",
-      password: "",
-      passwordConfirm: "",
-      error: null,
-    };
+      email: '',
+      name: '',
+      password: '',
+      passwordConfirm: '',
+      error: null
+    }
   },
   methods: {
-    async register() {
+    async register () {
       try {
         const response = await AuthenticationService.register({
           email: this.email,
           name: this.name,
           password: this.password,
-          passwordConfirm: this.passwordConfirm,
+          passwordConfirm: this.passwordConfirm
         })
-        console.log(response);
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
-        this.error = error.response.data.error;
+        this.error = error.response.data.error
       }
     }
   }
