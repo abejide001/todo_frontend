@@ -6,7 +6,7 @@
         <div class="white elevation-1">
           <v-toolbar flat dense class="cyan" dark>
             <v-toolbar-title>
-              Register
+              Login
             </v-toolbar-title>
           </v-toolbar>
           <div class="pl-4 pr-4 pt-4 pb-2">
@@ -22,15 +22,6 @@
                       v-on:keyup.enter="register"
                     ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="3">
-                    <v-text-field
-                      label="Name"
-                      outlined
-                      class="name"
-                      v-model="name"
-                      v-on:keyup.enter="register"
-                    ></v-text-field>
-                    </v-col>
                     <v-col cols="12" sm="4" md="3">
                     <v-text-field
                       label="Password"
@@ -40,21 +31,12 @@
                       v-on:keyup.enter="register"
                     ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="4" md="3">
-                    <v-text-field
-                      label="PasswordConfirm"
-                      outlined
-                      type="password"
-                      v-model="passwordConfirm"
-                      v-on:keyup.enter="register"
-                    ></v-text-field>
-                    </v-col>
                     </v-col>
                     <v-row>
                       <div class="red--text">{{error}} </div>
                     </v-row>
                     <v-row>
-                      <v-btn  @click="register">Register </v-btn>
+                      <v-btn  @click="login">Login </v-btn>
                     </v-row>
                   </v-container>
               </v-form>
@@ -72,20 +54,16 @@ export default {
   data() {
     return {
       email: "",
-      name: "",
       password: "",
-      passwordConfirm: "",
       error: null,
     };
   },
   methods: {
-    async register() {
+    async login() {
       try {
-        const response = await AuthenticationService.register({
+        const response = await AuthenticationService.login({
           email: this.email,
-          name: this.name,
-          password: this.password,
-          passwordConfirm: this.passwordConfirm,
+          password: this.password
         })
         console.log(response);
       } catch (error) {
