@@ -16,6 +16,8 @@
                 <v-col cols="12" sm="6" md="3">
                     <v-text-field
                       label="Email"
+                      required
+                      :rules="[required]"
                       outlined
                       class="email"
                       v-model="email"
@@ -77,6 +79,9 @@ export default {
       passwordConfirm: '',
       error: null
     }
+    rules: {
+      required: (value) => !!value || 'Required'
+    }
   },
   methods: {
     async register () {
@@ -90,6 +95,7 @@ export default {
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
+        console.log(error)
         this.error = error.response.data.error
       }
     }

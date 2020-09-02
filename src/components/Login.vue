@@ -67,6 +67,9 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.data.token)
         this.$store.dispatch('setUser', response.data.data.user)
+        this.$router.push({
+          name: "todos"
+        })
       } catch (error) {
         this.error = error.response.data.error
       }

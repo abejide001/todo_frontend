@@ -5,18 +5,19 @@
         class="home"
         tag="span"
         :to="{
-          name: 'songs'
+          name: 'root'
         }">
-        Todo
+        Home
       </router-link>
     </v-toolbar-title>
 
     <v-toolbar-items>
       <v-btn
+      v-if="$store.state.isUserLoggedIn"
         flat
         dark
         :to="{
-          name: 'songs'
+          name: 'todos'
         }">
         Browse
       </v-btn>
@@ -44,6 +45,13 @@
         }">
         Sign Up
       </v-btn>
+       <v-btn 
+        v-if="$store.state.isUserLoggedIn"
+        flat 
+        dark
+        @click="logout">
+        Log Out
+      </v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -55,7 +63,7 @@ export default {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       this.$router.push({
-        name: 'songs'
+        name: 'login'
       })
     }
   }
@@ -68,5 +76,8 @@ export default {
 }
 .home:hover {
   color: #E9E;
+}
+.v-toolbar__content, .v-toolbar__extension {
+    padding: 10px 16px !important;
 }
 </style>
