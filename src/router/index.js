@@ -7,6 +7,22 @@ import Login from '@/components/Login'
 import Todo from '@/components/Todos'
 import CreateTodo from '@/components/CreateTodo'
 import store from "../store/store"
+import multiguard from 'vue-router-multiguard';
+
+
+const notLoggedIn = function(to, from, next) {
+    if (!store.state.isUserLoggedIn) {
+       next('/login')
+    }
+    next();
+}
+
+const loggedIn = function(to, from, next) {
+  if (store.state.isUserLoggedIn) {
+     next('/todos')
+  }
+  next();
+}
 
 Vue.use(Router)
 
@@ -21,29 +37,28 @@ const router = new Router({
       path: '/register',
       name: 'register',
       component: Register,
+      beforeEnter: multiguard([loggedIn])
     },
 
     {
       path: '/login',
       name: 'login',
       component: Login,
+      beforeEnter: multiguard([loggedIn])
     },
     {
       path: '/todos',
       name: 'todos',
       component: Todo,
+      beforeEnter: multiguard([notLoggedIn])
     },
     {
       path: '/todos/create',
       name: 'todos-create',
       component: CreateTodo,
+      beforeEnter: multiguard([notLoggedIn])
     },
   ]
 })
-
-// router.beforeEach((to, from, next) => {
-//   if (to.name !== 'login' && !store.state.isUserLoggedIn) next({ name: 'login' })
-//   else next()
-// })
 
 export default router

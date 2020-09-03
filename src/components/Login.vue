@@ -18,7 +18,7 @@
                       label="Email"
                       class="email"
                       v-model="email"
-                      v-on:keyup.enter="register"
+                      v-on:keyup.enter="login"
                     ></v-text-field>
                     </v-col>
                     <v-col>
@@ -26,12 +26,15 @@
                       label="Password"
                       type="password"
                       v-model="password"
-                      v-on:keyup.enter="register"
+                      v-on:keyup.enter="login"
                     ></v-text-field>
                     </v-col>
                     </v-col>
                     <v-row>
-                      <div class="red--text">{{error}} </div>
+                    <span  class="error" v-if="error">
+                      {{ errorMessage }}
+                    </span>
+                      <!-- <div class="red--text">{{error}} </div> -->
                     </v-row>
                     <v-row class="center">
                       <v-btn  @click="login">Login </v-btn>
@@ -53,7 +56,8 @@ export default {
     return {
       email: '',
       password: '',
-      error: null
+      error: false,
+      errorMessage: this.errorMessage
     }
   },
   methods: {
@@ -69,7 +73,9 @@ export default {
           name: 'todos'
         })
       } catch (error) {
-        this.error = error.response.data.error
+        this.error = true
+        this.errorMessage = error.response.data.message
+        console.log(error.response.data.message)
       }
     }
   }

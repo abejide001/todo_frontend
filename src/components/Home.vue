@@ -1,7 +1,12 @@
 <template>
-  <div class="hello">
-    <h1>sdffdf</h1>
-  </div>
+  <v-app>
+    <v-layout>
+      <v-flex xs6 offset-xs3>
+        <div class="hello">
+        </div>
+      </v-flex>
+    </v-layout>
+  </v-app>
 </template>
 
 <script>
