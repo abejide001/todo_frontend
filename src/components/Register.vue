@@ -52,9 +52,11 @@
                   <!-- <div class="red--text">{{error}} </div> -->
                 </v-row>
                 <v-row class="center">
-                  <v-btn @click="register">Register</v-btn>
+                  <v-btn @click="register" class="auth">Register</v-btn>
                   <br />
-                  <v-btn @click="googleRegister" href="https://todolisapp.herokuapp.com/auth/google">Google sign up</v-btn>
+                  <v-btn class="auth" @click="googleRegister" href="https://todolisapp.herokuapp.com/auth/google">
+                  <v-icon left>mdi-google</v-icon>Google sign up
+                  </v-btn>
                 </v-row>
               </v-container>
             </v-form>
@@ -121,5 +123,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 20px;
+}
+.auth {
+   margin-left: 20px;
+  margin-right: 20px;
 }
 </style>

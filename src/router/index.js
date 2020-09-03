@@ -11,15 +11,16 @@ import multiguard from 'vue-router-multiguard';
 
 const loggedIn = function(to, from, next) {
   if (store.state.isUserLoggedIn) {
-     next('/todos')
+     next()
   }
-  next();
+  next("/login")
 }
 
-const notLoggedIn = function(to, from, next) {
-    if (!store.state.isUserLoggedIn) {
-       next('/login')
-    }
+const guest = function (to, from, next) {
+  if (store.state.isUserLoggedIn) {
+    next("/todos")
+  }
+  next()
 }
 
 Vue.use(Router)
@@ -34,26 +35,26 @@ const routes = [
       path: '/register',
       name: 'register',
       component: Register,
-      beforeEnter: multiguard([loggedIn])
+      beforeEnter: multiguard([guest])
     },
 
     {
       path: '/login',
       name: 'login',
       component: Login,
-      beforeEnter: multiguard([loggedIn])
+      beforeEnter: multiguard([guest])
     },
     {
       path: '/todos',
       name: 'todos',
       component: Todo,
-      // beforeEnter: multiguard([notLoggedIn]),
+      beforeEnter: multiguard([loggedIn]),
     },
     {
       path: '/todos/create',
       name: 'todos-create',
       component: CreateTodo,
-      // beforeEnter: multiguard([notLoggedIn])
+      beforeEnter: multiguard([loggedIn])
     },
   ]
 const router = new Router({
