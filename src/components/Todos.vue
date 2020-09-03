@@ -28,7 +28,7 @@
                       <v-btn class="ma-2" tile outlined color="success">
                         <v-icon left>mdi-pencil</v-icon>Edit
                       </v-btn>
-                      <v-btn class="ma-2" tile outlined color="red" @click="destroy">
+                      <v-btn class="ma-2" tile outlined color="red" @click="destroy(todo._id)">
                         <v-icon left>mdi-delete</v-icon>Delete
                       </v-btn>
                     </td>
@@ -43,27 +43,30 @@
   </v-app>
 </template>
 <script>
-import TodosService from '../services/TodosService'
+import TodosService from "../services/TodosService";
 export default {
   data () {
     return {
-      todos: null
-    }
+      todos: null,
+    };
   },
 
   async mounted () {
-    this.todos = (await TodosService.getAllTodos()).data.data
+    this.todos = (await TodosService.getAllTodos()).data.data;
   },
 
-  async destroy () {
-    try {
-      console.log(this.todos)
-      await TodosService.deleteTodo(this.todos.id)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
+  methods: {
+    async destroy (id) {
+      try {
+        console.log(id);
+        await TodosService.deleteTodo(id);
+        location.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

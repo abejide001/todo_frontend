@@ -9,14 +9,6 @@ import CreateTodo from '@/components/CreateTodo'
 import store from "../store/store"
 import multiguard from 'vue-router-multiguard';
 
-
-const notLoggedIn = function(to, from, next) {
-    if (!store.state.isUserLoggedIn) {
-       next('/login')
-    }
-    next();
-}
-
 const loggedIn = function(to, from, next) {
   if (store.state.isUserLoggedIn) {
      next('/todos')
@@ -24,10 +16,15 @@ const loggedIn = function(to, from, next) {
   next();
 }
 
+const notLoggedIn = function(to, from, next) {
+    if (!store.state.isUserLoggedIn) {
+       next('/login')
+    }
+}
+
 Vue.use(Router)
 
-const router = new Router({
-  routes: [
+const routes = [
     {
       path: '/',
       name: 'root',
@@ -50,15 +47,15 @@ const router = new Router({
       path: '/todos',
       name: 'todos',
       component: Todo,
-      beforeEnter: multiguard([notLoggedIn])
     },
     {
       path: '/todos/create',
       name: 'todos-create',
       component: CreateTodo,
-      beforeEnter: multiguard([notLoggedIn])
     },
   ]
+const router = new Router({
+  mode: 'history',
+  routes
 })
-
 export default router
