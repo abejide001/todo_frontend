@@ -4,7 +4,7 @@
       <v-flex xs6 offset-xs3>
         <div class="white elevation-1">
           <v-toolbar flat dense class="cyan" dark>
-            <v-toolbar-title>Todo</v-toolbar-title>
+            <v-toolbar-title>Todos</v-toolbar-title>
           </v-toolbar>
           <div class="pl-4 pr-4 pt-4 pb-2">
             <v-simple-table light="true">
@@ -28,7 +28,7 @@
                       <v-btn class="ma-2" tile outlined color="success">
                         <v-icon left>mdi-pencil</v-icon>Edit
                       </v-btn>
-                      <v-btn class="ma-2" tile outlined color="red">
+                      <v-btn class="ma-2" tile outlined color="red" @click="destroy">
                         <v-icon left>mdi-delete</v-icon>Delete
                       </v-btn>
                     </td>
@@ -43,18 +43,27 @@
   </v-app>
 </template>
 <script>
-import TodosService from "../services/TodosService";
+import TodosService from '../services/TodosService'
 export default {
-  data() {
+  data () {
     return {
-      todos: null,
-    };
+      todos: null
+    }
   },
 
-  async mounted() {
-    this.todos = (await TodosService.getAllTodos()).data;
+  async mounted () {
+    this.todos = (await TodosService.getAllTodos()).data.data
   },
-};
+
+  async destroy () {
+    try {
+      console.log(this.todos)
+      await TodosService.deleteTodo(this.todos.id)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

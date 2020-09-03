@@ -13,39 +13,35 @@
             <v-form>
               <v-container>
                 <v-col>
-                <v-col cols="12" sm="6" md="3">
+                <v-col>
                     <v-text-field
                       label="Email"
                       required
                       :rules="[required]"
-                      outlined
                       class="email"
                       v-model="email"
                       v-on:keyup.enter="register"
                     ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="3">
+                    <v-col>
                     <v-text-field
                       label="Name"
-                      outlined
                       class="name"
                       v-model="name"
                       v-on:keyup.enter="register"
                     ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="4" md="3">
+                    <v-col>
                     <v-text-field
                       label="Password"
-                      outlined
                       type="password"
                       v-model="password"
                       v-on:keyup.enter="register"
                     ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="4" md="3">
+                    <v-col>
                     <v-text-field
                       label="PasswordConfirm"
-                      outlined
                       type="password"
                       v-model="passwordConfirm"
                       v-on:keyup.enter="register"
@@ -55,7 +51,7 @@
                     <v-row>
                       <div class="red--text">{{error}} </div>
                     </v-row>
-                    <v-row>
+                    <v-row class="center">
                       <v-btn  @click="register">Register </v-btn>
                     </v-row>
                   </v-container>
@@ -94,8 +90,10 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'login'
+        })
       } catch (error) {
-        console.log(error)
         this.error = error.response.data.error
       }
     }
@@ -107,5 +105,10 @@ export default {
 <style scoped>
 .error {
   color: red;
+}
+.center {
+display: flex;
+justify-content: center;
+align-items: center;
 }
 </style>

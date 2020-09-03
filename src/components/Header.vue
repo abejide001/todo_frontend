@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar fixed class="cyan" dark>
+  <v-toolbar fixed="true" class="cyan" dark>
     <v-toolbar-title class="mr-4">
       <router-link
         class="home"
@@ -13,6 +13,7 @@
 
     <v-toolbar-items>
       <v-btn
+      class="browse"
       v-if="$store.state.isUserLoggedIn"
         flat
         dark
@@ -23,10 +24,22 @@
       </v-btn>
     </v-toolbar-items>
 
+    <v-toolbar-items>
+      <v-btn
+      v-if="$store.state.isUserLoggedIn"
+        flat
+        dark
+        :to="{
+          name: 'todos-create'
+        }">
+        Add todo
+      </v-btn>
+    </v-toolbar-items>
     <v-spacer></v-spacer>
 
     <v-toolbar-items>
       <v-btn
+      class="browse"
        v-if="!$store.state.isUserLoggedIn"
         flat
         dark
@@ -45,9 +58,9 @@
         }">
         Sign Up
       </v-btn>
-       <v-btn 
+       <v-btn
         v-if="$store.state.isUserLoggedIn"
-        flat 
+        flat
         dark
         @click="logout">
         Log Out
@@ -77,7 +90,11 @@ export default {
 .home:hover {
   color: #E9E;
 }
-.v-toolbar__content, .v-toolbar__extension {
-    padding: 10px 16px !important;
+.browse {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+  .v-toolbar {
+  flex: none !important;
 }
 </style>

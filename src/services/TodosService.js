@@ -5,9 +5,9 @@ export default {
     return Api().get('todos')
   },
   createPost (todo) {
-    return Api().post("todos", todo)
+    return Api().post('todos', todo)
   },
-  deletePost (todoId) {
-      return Api().delete(`todos/${todoId}`)
+  deleteTodo (todoId) {
+    return Api().delete(`todos/${todoId}`)
   }
 }

@@ -6,11 +6,11 @@ import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Todo from '@/components/Todos'
 import CreateTodo from '@/components/CreateTodo'
-
+import store from "../store/store"
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -40,3 +40,10 @@ export default new Router({
     },
   ]
 })
+
+// router.beforeEach((to, from, next) => {
+//   if (to.name !== 'login' && !store.state.isUserLoggedIn) next({ name: 'login' })
+//   else next()
+// })
+
+export default router
