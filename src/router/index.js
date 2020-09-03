@@ -47,11 +47,13 @@ const routes = [
       path: '/todos',
       name: 'todos',
       component: Todo,
+      // beforeEnter: multiguard([notLoggedIn]),
     },
     {
       path: '/todos/create',
       name: 'todos-create',
       component: CreateTodo,
+      // beforeEnter: multiguard([notLoggedIn])
     },
   ]
 const router = new Router({

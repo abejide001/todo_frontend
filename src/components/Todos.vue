@@ -43,30 +43,29 @@
   </v-app>
 </template>
 <script>
-import TodosService from "../services/TodosService";
+import TodosService from '../services/TodosService'
 export default {
   data () {
     return {
-      todos: null,
-    };
+      todos: null
+    }
   },
 
   async mounted () {
-    this.todos = (await TodosService.getAllTodos()).data.data;
+    this.todos = (await TodosService.getAllTodos()).data.data
   },
 
   methods: {
     async destroy (id) {
       try {
-        console.log(id);
-        await TodosService.deleteTodo(id);
-        location.reload();
+        await TodosService.deleteTodo(id)
+        location.reload()
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

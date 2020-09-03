@@ -12,6 +12,13 @@
           <div class="pl-4 pr-4 pt-4 pb-2">
             <v-form>
               <v-container>
+                 <v-row>
+                    <span v-if="error">
+                      <v-alert type="error">
+                      {{ errorMessage }}
+                      </v-alert>
+                    </span>
+                    </v-row>
                 <v-col>
                 <v-col>
                     <v-text-field
@@ -30,12 +37,6 @@
                     ></v-text-field>
                     </v-col>
                     </v-col>
-                    <v-row>
-                    <span  class="error" v-if="error">
-                      {{ errorMessage }}
-                    </span>
-                      <!-- <div class="red--text">{{error}} </div> -->
-                    </v-row>
                     <v-row class="center">
                       <v-btn  @click="login">Login </v-btn>
                     </v-row>

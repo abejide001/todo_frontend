@@ -54,7 +54,7 @@
                 <v-row class="center">
                   <v-btn @click="register">Register</v-btn>
                   <br />
-                  <v-btn @click="googleRegister">Google sign up</v-btn>
+                  <v-btn @click="googleRegister" href="https://todolisapp.herokuapp.com/auth/google">Google sign up</v-btn>
                 </v-row>
               </v-container>
             </v-form>
@@ -66,50 +66,50 @@
 </template>
 
 <script>
-import AuthenticationService from "../services/AuthenticationService";
+import AuthenticationService from '../services/AuthenticationService'
 
 export default {
-  data() {
+  data () {
     return {
-      email: "",
-      name: "",
-      password: "",
-      passwordConfirm: "",
+      email: '',
+      name: '',
+      password: '',
+      passwordConfirm: '',
       error: false,
       rules: {
-        required: (value) => !!value || "Required",
-      },
-    };
+        required: (value) => !!value || 'Required'
+      }
+    }
   },
   methods: {
-    async register() {
+    async register () {
       try {
         const response = await AuthenticationService.register({
           email: this.email,
           name: this.name,
           password: this.password,
-          passwordConfirm: this.passwordConfirm,
-        });
-        this.$store.dispatch("setToken", response.data.token);
-        this.$store.dispatch("setUser", response.data.user);
+          passwordConfirm: this.passwordConfirm
+        })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
         this.$router.push({
-          name: "login",
-        });
+          name: 'login'
+        })
       } catch (error) {
-        this.error = error.response.data.error;
+        this.error = error.response.data.error
       }
     },
 
-    async googleRegister() {
-      const response = await AuthenticationService.socailLogin();
-      this.$store.dispatch("setToken", response.data.token);
-      this.$store.dispatch("setUser", response.data.user);
+    async googleRegister () {
+      const response = await AuthenticationService.socailLogin()
+      this.$store.dispatch('setToken', response.data.token)
+      this.$store.dispatch('setUser', response.data.user)
       this.$router.push({
-        name: "todos",
-      });
-    },
-  },
-};
+        name: 'todos'
+      })
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
