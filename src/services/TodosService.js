@@ -2,12 +2,12 @@ import Api from './Api'
 
 export default {
   getAllTodos () {
-    return Api().get('api/v1/todos')
+    return Api().get('todos')
   },
   createPost (todo) {
-    return Api().post('api/v1/todos', todo)
+    return Api().post('todos', todo)
   },
   deleteTodo (todoId) {
-    return Api().delete(`api/v1/todos/${todoId}`)
+    return Api().delete(`todos/${todoId}`)
   }
 }

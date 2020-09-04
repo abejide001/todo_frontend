@@ -48,13 +48,13 @@ const routes = [
       path: '/todos',
       name: 'todos',
       component: Todo,
-      beforeEnter: multiguard([loggedIn]),
+      // beforeEnter: multiguard([loggedIn]),
     },
     {
       path: '/todos/create',
       name: 'todos-create',
       component: CreateTodo,
-      beforeEnter: multiguard([loggedIn])
+      // beforeEnter: multiguard([loggedIn])
     },
   ]
 const router = new Router({

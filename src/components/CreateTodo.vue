@@ -54,7 +54,8 @@ export default {
       todo: {
         name: null,
         description: null,
-        priority: null
+        priority: null,
+        comnpleted: null
       }
     }
   },
@@ -80,5 +81,8 @@ export default {
 display: flex;
 justify-content: center;
 align-items: center;
+}
+.white {
+  margin-top: 70px
 }
 </style>

@@ -24,6 +24,7 @@
                     <v-text-field
                       label="Email"
                       class="email"
+                      :rules="[rules.required]"
                       v-model="email"
                       v-on:keyup.enter="login"
                     ></v-text-field>
@@ -32,6 +33,7 @@
                     <v-text-field
                       label="Password"
                       type="password"
+                      :rules="[rules.required]"
                       v-model="password"
                       v-on:keyup.enter="login"
                     ></v-text-field>
@@ -58,7 +60,10 @@ export default {
       email: '',
       password: '',
       error: false,
-      errorMessage: this.errorMessage
+      errorMessage: this.errorMessage,
+      rules: {
+         required: (value) => !!value || 'Required'
+      }
     }
   },
   methods: {
@@ -92,5 +97,8 @@ export default {
 display: flex;
 justify-content: center;
 align-items: center;
+}
+.white {
+  margin-top: 70px
 }
 </style>

@@ -26,7 +26,11 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./assets/todo-1024x693.jpg");
+  background-image: url("./assets/todo.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: white;
+  background-blend-mode: multiply;
   /* color: #2c3e50; */
 }
 </style>

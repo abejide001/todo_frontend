@@ -83,6 +83,15 @@ export default {
       }
     }
   },
+  beforeMount () {
+      if (this.$route.query.token) {
+         this.$store.dispatch('setToken', this.$route.query.token)
+         this.$router.push({
+          name: 'todos'
+        })
+      }
+  },
+
   methods: {
     async register () {
       try {
@@ -101,7 +110,7 @@ export default {
         this.error = error.response.data.error
       }
     },
-
+   
     async googleRegister () {
       const response = await AuthenticationService.socailLogin()
       this.$store.dispatch('setToken', response.data.token)
@@ -128,5 +137,8 @@ export default {
 .auth {
    margin-left: 20px;
   margin-right: 20px;
+}
+.white {
+  margin-top: 70px
 }
 </style>
