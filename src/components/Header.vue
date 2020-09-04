@@ -13,6 +13,7 @@
 
     <v-toolbar-items>
       <v-btn
+      small
       class="browse"
       v-if="$store.state.isUserLoggedIn"
         flat
@@ -27,6 +28,7 @@
     <v-toolbar-items>
       <v-btn
       v-if="$store.state.isUserLoggedIn"
+       small
         flat
         dark
         :to="{
@@ -39,6 +41,7 @@
 
     <v-toolbar-items>
       <v-btn
+      small
       class="browse"
        v-if="!$store.state.isUserLoggedIn"
         flat
@@ -50,8 +53,8 @@
       </v-btn>
 
       <v-btn
+        small
         v-if="!$store.state.isUserLoggedIn"
-        flat
         dark
         :to="{
           name: 'register'

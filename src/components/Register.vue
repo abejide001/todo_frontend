@@ -54,8 +54,8 @@
                 <v-row class="center">
                   <v-btn @click="register" class="auth">Register</v-btn>
                   <br />
-                  <v-btn class="auth" @click="googleRegister" href="https://todolisapp.herokuapp.com/auth/google">
-                  <v-icon left>mdi-google</v-icon>Google sign up
+                  <v-btn class="auth" href="https://todolisapp.herokuapp.com/auth/google">
+                  <v-icon left>mdi-google</v-icon>sign up
                   </v-btn>
                 </v-row>
               </v-container>
@@ -102,15 +102,6 @@ export default {
         this.error = error.response.data.error
       }
     },
-
-    async googleRegister () {
-      const response = await AuthenticationService.socailLogin()
-      this.$store.dispatch('setToken', response.data.token)
-      this.$store.dispatch('setUser', response.data.user)
-      this.$router.push({
-        name: 'todos'
-      })
-    }
   }
 }
 </script>
@@ -127,7 +118,7 @@ export default {
   margin-left: 20px;
 }
 .auth {
-   margin-left: 20px;
+  margin-left: 20px;
   margin-right: 20px;
 }
 .white {

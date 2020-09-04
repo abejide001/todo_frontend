@@ -25,10 +25,10 @@
                     <td>{{ todo.priority }}</td>
                     <td>{{ todo.completed }}</td>
                     <td>
-                      <v-btn class="ma-2" tile outlined color="success">
+                      <v-btn class="ma-2" tile color="success">
                         <v-icon left>mdi-pencil</v-icon>Edit
                       </v-btn>
-                      <v-btn class="ma-2" tile outlined color="red" @click="destroy(todo._id)">
+                      <v-btn class="ma-2" tile color="red" @click="destroy(todo._id)">
                         <v-icon left>mdi-delete</v-icon>Delete
                       </v-btn>
                     </td>
@@ -53,6 +53,7 @@ export default {
 
   async mounted () {
     this.todos = (await TodosService.getAllTodos()).data.data
+    console.log(this.todos)
   },
 
   methods: {

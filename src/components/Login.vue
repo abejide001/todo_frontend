@@ -40,7 +40,10 @@
                     </v-col>
                     </v-col>
                     <v-row class="center">
-                      <v-btn  @click="login">Login </v-btn>
+                      <v-btn  @click="login" class="auth">Login </v-btn>
+                      <v-btn class="auth" href="https://todolisapp.herokuapp.com/auth/google">
+                  <v-icon left>mdi-google</v-icon>login with google
+                  </v-btn>
                     </v-row>
                   </v-container>
               </v-form>
@@ -100,5 +103,9 @@ align-items: center;
 }
 .white {
   margin-top: 70px
+}
+.auth {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 </style>
