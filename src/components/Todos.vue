@@ -53,7 +53,6 @@ export default {
 
   async mounted () {
     this.todos = (await TodosService.getAllTodos()).data.data
-    console.log(this.todos)
   },
 
   methods: {

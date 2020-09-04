@@ -6,6 +6,7 @@ import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Todo from '@/components/Todos'
 import CreateTodo from '@/components/CreateTodo'
+import SocialAuth from '@/components/SocialAuth'
 import store from "../store/store"
 import multiguard from 'vue-router-multiguard';
 
@@ -43,6 +44,12 @@ const routes = [
       name: 'login',
       component: Login,
       beforeEnter: multiguard([guest])
+    },
+    {
+      path: '/auth',
+      name: 'auth',
+      component: SocialAuth,
+      // beforeEnter: multiguard([guest])
     },
     {
       path: '/todos',
