@@ -14,7 +14,6 @@
                     <th class="text-left">Name</th>
                     <th class="text-left">Description</th>
                     <th class="text-left">Priority</th>
-                    <th class="text-left">Completed</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -23,7 +22,6 @@
                     <td>{{ todo.name }}</td>
                     <td>{{ todo.description }}</td>
                     <td>{{ todo.priority }}</td>
-                    <td>{{ todo.completed }}</td>
                     <td>
                       <v-btn class="ma-2" tile color="success">
                         <v-icon left>mdi-pencil</v-icon>Edit
